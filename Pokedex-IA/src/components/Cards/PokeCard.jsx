@@ -8,6 +8,8 @@ export const PokeCard = ({
   types,
   backgroundimg = 'src/assets/pokemonicon.png',
 }) => {
+  
+  // Define a color do fundo do background dependendo do tipo do Pokémon
 
   const colors = {
     fire: '#FFA500',

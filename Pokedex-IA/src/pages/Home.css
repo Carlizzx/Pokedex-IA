@@ -7,13 +7,74 @@
   flex-direction: column;
   align-items: center;
 }
+html, body {
+  min-height: 100%;
+}
+
+body{
+ background-color: #f6f7fb;
+ padding: 0; 
+ margin: 0;
+}
 
 .home__title {
-  margin: 0;
-  font-size: 2.5rem;
+  margin: 0 0 12px;
+  font-size: 2rem;
   font-weight: 700;
-  color: #222;
+  color: #0f172a;
   text-align: center;
+}
+
+.home__pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 18px 0 24px;
+  flex-wrap: wrap;
+}
+
+.home__pagination--bottom {
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.home__pagination-button {
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #0f172a;
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+}
+
+.home__pagination-button:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.home__pagination-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.home__pagination-button--active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+.home__pagination-info {
+  font-weight: 600;
+  color: #475569;
+  padding: 0 6px;
+}
+
+.home__pagination-ellipsis {
+  padding: 0 4px;
+  font-weight: 700;
+  color: #64748b;
 }
 
 .home__cards {
