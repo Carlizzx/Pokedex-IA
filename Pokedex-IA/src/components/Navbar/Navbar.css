@@ -27,6 +27,7 @@
   overflow: hidden;
   background: #f1f5f9;
   flex-shrink: 0;
+  cursor: pointer;
 }
 
 .app-navbar__logo img {

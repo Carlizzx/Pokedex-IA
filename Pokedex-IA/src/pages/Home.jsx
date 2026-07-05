@@ -2,17 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { PokeCard } from '../components/Cards/PokeCard'
 import { Navbar } from '../components/Navbar/Navbar'
 import './Home.css'
-import { fetchPokemons } from '../services/pokeAPI'
+import { fetchPokemonById, fetchPokemons } from '../services/pokeAPI'
+import { useNavigate } from 'react-router-dom'
 
 export const Home = () => {
   const [pokemons, setPokemons] = useState([])       // pokémons da página atual
-  const [allPokemons, setAllPokemons] = useState([])  // todos, usados na busca
+  const [allPokemons, setAllPokemons] = useState([])  // lista leve para busca
+  const [searchResults, setSearchResults] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [total, setTotal] = useState(0)
   const [search, setSearch] = useState('')
 
   const pokemonporpagina = 150
   const isSearching = search.trim().length > 0
+  const navigate = useNavigate()
 
   // Carrega a página atual normalmente
   useEffect(() => {
@@ -26,15 +29,42 @@ export const Home = () => {
     load()
   }, [currentPage])
 
-  // Carrega TODOS os pokémons uma única vez (usado só pra busca)
+  // Carrega uma lista leve para a busca sem buscar detalhes de 2000 pokémons
   useEffect(() => {
     const loadAll = async () => {
-      const data = await fetchPokemons(2000, 0)
+      const data = await fetchPokemons(2000, 0, false)
       setAllPokemons(data.pokemons)
     }
 
     loadAll()
   }, [])
+
+  useEffect(() => {
+
+    // Se não estiver buscando, limpa os resultados de busca
+    if (!isSearching) {
+      setSearchResults([])
+      return
+    }
+
+    const query = search.trim().toLowerCase()
+    const filtro = allPokemons
+      .filter((pokemon) => pokemon.name.toLowerCase().includes(query))
+      .slice(0, 40)
+
+    const loadSearchResults = async () => {
+      const details = await Promise.all(
+        filtro.map((pokemon) => fetchPokemonById(pokemon.name))
+      )
+      setSearchResults(details)
+    }
+
+    if (filtro.length > 0) {
+      loadSearchResults()
+    } else {
+      setSearchResults([])
+    }
+  }, [allPokemons, isSearching, search])
 
   const totalPages = Math.ceil(total / pokemonporpagina)
 
@@ -57,11 +87,11 @@ export const Home = () => {
   }
 
   // decide qual lista mostrar
-  const listaExibida = isSearching
-    ? allPokemons.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(search.toLowerCase())
-      )
-    : pokemons
+  const listaExibida = isSearching ? searchResults : pokemons
+
+  const pokemonPickHandler = (pokemonData) => {
+    navigate(`/profiles/${pokemonData.id}`, { state: { pokemonData } })
+  }
 
   return (
     <main className="home">
@@ -99,6 +129,7 @@ export const Home = () => {
             title={pokemon.name}
             image={pokemon.sprites?.front_default}
             types={pokemon.types.map((type) => type.type.name)}
+            onClick={() => pokemonPickHandler(pokemon)}
           />
         ))}
       </div>

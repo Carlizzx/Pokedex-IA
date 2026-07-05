@@ -18,6 +18,11 @@
   opacity: 100%;
 }
 
+.poke-card:hover { 
+  transform: scale(1.05);
+  transition: transform 0.3s ease-in-out;
+}
+
   /* Pokebola no fundo do card */
 .poke-card::before {
   content: '';
