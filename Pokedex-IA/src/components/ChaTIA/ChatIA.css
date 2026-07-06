@@ -1,0 +1,171 @@
+.chatia {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.chatia__panel {
+  width: min(320px, calc(100vw - 32px));
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+  border: 2px solid #ef4444;
+}
+
+.chatia__header {
+  padding: 14px 16px;
+  background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+  color: #ffffff;
+}
+
+.chatia__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chatia__subtitle {
+  margin: 3px 0 0;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.chatia__body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.chatia__bubble {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chatia__bubble--assistant {
+  background: #ffffff;
+  color: #111827;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.chatia__bubble--user {
+  background: #ef4444;
+  color: #ffffff;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+.chatia__toggle {
+  width: 62px;
+  height: 62px;
+  border: 3px solid #111827;
+  border-radius: 50%;
+  background: #ef4444;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(239, 68, 68, 0.28);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chatia__toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(239, 68, 68, 0.34);
+}
+
+.chatia__toggle--open {
+  background: #ffffff;
+  color: #111827;
+}
+
+.chatia__toggle-text {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.chatia__toggle-x {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
+.chatia__toggle-x::before,
+.chatia__toggle-x::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 3px;
+  background: #111827;
+  border-radius: 999px;
+}
+
+.chatia__toggle-x::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.chatia__toggle-x::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.chatia__composer {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px 14px;
+  background: #111827;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chatia__composer input {
+  flex: 1;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 12px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+}
+
+.chatia__composer button {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 12px;
+  background: #ef4444;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 640px) {
+  .chatia {
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .chatia__panel {
+    width: min(300px, calc(100vw - 24px));
+  }
+}

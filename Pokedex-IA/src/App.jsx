@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import { Home } from './pages/Home'
-import { Router } from './routers/index'
+import { Router } from './routes/AppRoutes'
 
 function App() {
   return(

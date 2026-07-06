@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Navbar } from '../components/Navbar/Navbar'
-import { fetchPokemonById } from '../services/pokeAPI'
+import { ChatIA } from '../components/ChatIA/ChatIA'
+import { fetchPokemonById } from '../services/api/pokeAPI'
 import { typeColors } from '../utils/colors'
 import './Profiles.css'
 
-export const Profiles = () => {
+export const Profiles = ({ theme, setTheme }) => {
   const { id } = useParams()
+
   const [pokemon, setPokemon] = useState(null)
   const [loading, setLoading] = useState(true)
 
@@ -62,8 +64,6 @@ export const Profiles = () => {
         const data = await response.json()
 
         const entry =
-          data.effect_entries.find((e) => e.language.name === 'pt') ||
-          data.effect_entries.find((e) => e.language.name === 'pt-BR') ||
           data.effect_entries.find((e) => e.language.name === 'en')
 
         const description = entry
@@ -102,6 +102,8 @@ export const Profiles = () => {
       <Navbar HideSerch />
 
       <main className="profiles-shell">
+        <ChatIA currentPokemon={pokemon} />
+
         <section className="profiles-hero">
           <div className="profiles-hero__info">
             <p className="profiles-hero__eyebrow">Pokémon selecionado</p>

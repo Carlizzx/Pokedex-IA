@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PokeCard } from '../components/Cards/PokeCard'
 import { Navbar } from '../components/Navbar/Navbar'
 import './Home.css'
-import { fetchPokemonById, fetchPokemons } from '../services/pokeAPI'
+import { fetchPokemonById, fetchPokemons } from '../services/api/pokeAPI'
 import { useNavigate } from 'react-router-dom'
 
 export const Home = () => {

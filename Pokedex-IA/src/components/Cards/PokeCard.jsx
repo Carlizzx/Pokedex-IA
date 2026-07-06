@@ -42,7 +42,11 @@ export const PokeCard = ({
 
       <div className="poke-card__types">
         {types.map((type) => (
-          <span key={type} className="poke-card__type">
+          <span
+            key={type}
+            className="poke-card__type"
+            style={{ backgroundColor: typeColors[type.toLowerCase()] || 'rgba(255,255,255,0.2)' }}
+          >
             {type}
           </span>
         ))}
