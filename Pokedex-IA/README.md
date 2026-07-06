@@ -58,10 +58,10 @@ A chave da OpenRouter é lida via `import.meta.env.VITE_OPENROUTER_API_KEY` (pad
 
 ```bash
 # 1. Clone o repositório
-git clone [https://github.com/Carlizzx/Pokedex-IA]
+git clone https://github.com/Carlizzx/Pokedex-IA
 
 # 2. Entre na pasta do projeto
-cd [pokedex-ia]
+cd pokedex-ia
 
 # 3. Instale as dependências
 npm install
